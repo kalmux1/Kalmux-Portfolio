@@ -22,12 +22,12 @@ import {
 const roles = ['Cybersecurity enthusiast', 'Python developer', 'CTF competitor', 'Web developer'];
 
 const projects = [
-  { name: 'PhoneOsint', description: 'A focused Bash toolkit for fast, ethical phone number OSINT reconnaissance.', type: 'Cybersecurity', stack: ['Shell', 'OSINT'], stars: 8, forks: 2, accent: 'cyan' },
-  { name: 'CORS-POC', description: 'Proof-of-concept tooling for identifying and validating unsafe CORS configurations.', type: 'Cybersecurity', stack: ['Python', 'Security'], stars: 6, forks: 1, accent: 'green' },
-  { name: 'BurpSuite-Pro', description: 'A practical reference pack for Burp Suite Professional 2024 workflows.', type: 'Tools', stack: ['Burp Suite', 'Docs'], stars: 5, forks: 1, accent: 'red' },
-  { name: 'Anon-Mac', description: 'A MAC address changer wrapped with a three-layer encryption workflow.', type: 'Tools', stack: ['Shell', 'Linux'], stars: 3, forks: 0, accent: 'cyan' },
-  { name: 'Huntmate', description: 'A security testing companion for organizing findings and vulnerability tracking.', type: 'Python', stack: ['Python', 'CLI'], stars: 3, forks: 1, accent: 'green' },
-  { name: 'dev-details', description: 'A lightweight system information script for clean, useful environment snapshots.', type: 'Tools', stack: ['Shell', 'Linux'], stars: 2, forks: 0, accent: 'cyan' },
+  { name: 'PhoneOsint', repo: 'PhoneOsint', description: 'A focused Bash toolkit for fast, ethical phone number OSINT reconnaissance.', type: 'Cybersecurity', stack: ['Shell', 'OSINT'], stars: 8, forks: 2, accent: 'cyan' },
+  { name: 'CORS-POC', repo: 'CORS-POC', description: 'Proof-of-concept tooling for identifying and validating unsafe CORS configurations.', type: 'Cybersecurity', stack: ['Python', 'Security'], stars: 6, forks: 1, accent: 'green' },
+  { name: 'BurpSuite-Pro', repo: 'BurpSuite-Pro', description: 'A practical reference pack for Burp Suite Professional 2024 workflows.', type: 'Tools', stack: ['Burp Suite', 'Docs'], stars: 5, forks: 1, accent: 'red' },
+  { name: 'Anon-Mac', repo: 'Anon-Mac', description: 'A MAC address changer wrapped with a three-layer encryption workflow.', type: 'Tools', stack: ['Shell', 'Linux'], stars: 3, forks: 0, accent: 'cyan' },
+  { name: 'Huntmate', repo: 'Huntmate', description: 'A security testing companion for organizing findings and vulnerability tracking.', type: 'Python', stack: ['Python', 'CLI'], stars: 3, forks: 1, accent: 'green' },
+  { name: 'dev-details', repo: 'dev-details', description: 'A lightweight system information script for clean, useful environment snapshots.', type: 'Tools', stack: ['Shell', 'Linux'], stars: 2, forks: 0, accent: 'cyan' },
 ];
 
 const skills = [
@@ -71,6 +71,14 @@ function App() {
 
   const sendMessage = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const name = String(formData.get('name') ?? '');
+    const email = String(formData.get('email') ?? '');
+    const message = String(formData.get('message') ?? '');
+    const subject = `Portfolio message from ${name}`;
+    const body = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=kal.mux.cyber@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(gmailUrl, '_blank', 'noopener,noreferrer');
     setMessageSent(true);
   };
 
@@ -116,7 +124,7 @@ function App() {
 
         <section className="section-wrap skills-section" id="skills"><div className="section-intro"><p className="section-index">02 / CAPABILITIES</p><h2>Tools for<br /><span>the curious.</span></h2></div><div className="skills-grid"><div className="skill-list">{skills.map((skill, index) => <div className="skill-row" key={skill.name}><div className="skill-head"><span><b>0{index + 1}</b>{skill.name}</span><strong>{skill.label}</strong></div><div className="skill-track"><span style={{ width: `${skill.value}%` }} /></div></div>)}</div><div className="skill-cloud"><p className="mini-label">// toolbelt.json</p><div className="tag-cloud">{['Burp Suite', 'CORS', 'OSINT', 'Python', 'Bash', 'React', 'Linux', 'Git', 'Vite', 'Tailwind', 'Pentesting', 'HTML/CSS'].map((tag, index) => <span className={index % 4 === 0 ? 'tag highlight' : 'tag'} key={tag}>{tag}</span>)}</div><div className="skill-note"><Zap size={17} /><span>Always learning.<br /><strong>Never assuming.</strong></span></div></div></div></section>
 
-        <section className="section-wrap project-section" id="projects"><div className="project-heading"><div className="section-intro"><p className="section-index">03 / SELECTED WORK</p><h2>Built to be<br /><span>useful.</span></h2></div><div className="project-heading-copy"><p>Small tools. Sharp edges. A growing collection of things that make security work a little more human.</p><a href="https://github.com/kalmux1" target="_blank" rel="noreferrer">View GitHub profile <ArrowUpRight size={16} /></a></div></div><div className="filter-row">{['All', 'Cybersecurity', 'Python', 'Web', 'Tools'].map((item) => <button className={filter === item ? 'active' : ''} key={item} onClick={() => setFilter(item)}>{item}</button>)}</div><div className="projects-grid">{visibleProjects.map((project, index) => <article className={`project-card accent-${project.accent}`} key={project.name}><div className="project-top"><span className="project-number">0{index + 1}</span><span className="project-type">{project.type}</span><ExternalLink size={17} /></div><div><h3>{project.name}</h3><p>{project.description}</p></div><div className="project-bottom"><div className="project-tags">{project.stack.map((tag) => <span key={tag}>{tag}</span>)}</div><div className="project-stats"><span><Star size={13} /> {project.stars}</span><span><Network size={13} /> {project.forks}</span></div></div></article>)}</div></section>
+        <section className="section-wrap project-section" id="projects"><div className="project-heading"><div className="section-intro"><p className="section-index">03 / SELECTED WORK</p><h2>Built to be<br /><span>useful.</span></h2></div><div className="project-heading-copy"><p>Small tools. Sharp edges. A growing collection of things that make security work a little more human.</p><a href="https://github.com/kalmux1" target="_blank" rel="noreferrer">View GitHub profile <ArrowUpRight size={16} /></a></div></div><div className="filter-row">{['All', 'Cybersecurity', 'Python', 'Web', 'Tools'].map((item) => <button className={filter === item ? 'active' : ''} key={item} onClick={() => setFilter(item)}>{item}</button>)}</div><div className="projects-grid">{visibleProjects.map((project, index) => <a className="project-link" href={`https://github.com/kalmux1/${project.repo}`} target="_blank" rel="noreferrer" key={project.name}><article className={`project-card accent-${project.accent}`}><div className="project-top"><span className="project-number">0{index + 1}</span><span className="project-type">{project.type}</span><ExternalLink size={17} /></div><div><h3>{project.name}</h3><p>{project.description}</p></div><div className="project-bottom"><div className="project-tags">{project.stack.map((tag) => <span key={tag}>{tag}</span>)}</div><div className="project-stats"><span><Star size={13} /> {project.stars}</span><span><Network size={13} /> {project.forks}</span></div></div></article></a>)}</div></section>
 
         <section className="section-wrap timeline-section"><div className="section-intro"><p className="section-index">04 / CREDENTIALS</p><h2>Proof of<br /><span>practice.</span></h2></div><div className="timeline-wrap"><div className="timeline-line" />{certifications.map((cert, index) => <div className="timeline-item" key={cert.code}><div className="timeline-dot" /><div className="timeline-year">{cert.year}</div><div className="cert-card"><div className="cert-icon"><Award size={18} /></div><div><span>{cert.code}</span><h3>{cert.title}</h3><p>{cert.issuer}</p></div><ChevronRight size={18} /></div></div>)}<div className="timeline-item achievement"><div className="timeline-dot" /><div className="timeline-year">NOW</div><div className="achievement-card"><div className="achievement-icon"><ShieldCheck size={24} /></div><div><span>ACHIEVEMENT UNLOCKED</span><h3>TryHackMe Top 5%</h3><p>Consistent practice in real-world security labs.</p></div></div></div></div></section>
 
