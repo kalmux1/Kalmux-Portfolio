@@ -108,7 +108,7 @@ function App() {
             <div className="art-orbit orbit-one" /><div className="art-orbit orbit-two" />
             <div className="terminal-label label-top"><span>SYS_INIT</span><small>0x7F / ONLINE</small></div>
             <div className="terminal-label label-side"><span>IDENTITY</span><small>VERIFIED</small></div>
-            <div className="character-frame"><img src="/src/assets/images/Kalmux-pf.png" alt="Kalmux character portrait" /><div className="image-shade" /></div>
+            <div className="character-frame"><img src="/assets/images/Kalmux-pf.png" alt="Kalmux character portrait" /><div className="image-shade" /></div>
             <div className="art-caption"><span className="caption-marker">///</span><div><strong>KALMUX / 01</strong><small>SECURITY RESEARCHER · BUILDER</small></div></div>
             <div className="scroll-cue"><span>SCROLL</span><ChevronRight size={15} /></div>
           </div>
