@@ -148,9 +148,9 @@ const PROJECTS = [
     name: 'JC-WMS',
     repo: 'JC-WMS',
     category: 'Web Apps',
-    status: 'PRODUCTION',
+    status: 'DEPLOYED',
     description:
-      'Warehouse & Workflow Management System web application for tracking inventory, records, and operations.',
+      'Offline-First Construction Workforce, Payroll, Site P&L, Material & Subcontractor Management PWA',
     stack: ['React', 'Web App', 'Dashboard'],
     stars: 5,
     forks: 1,
